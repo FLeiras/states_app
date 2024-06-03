@@ -1,7 +1,7 @@
 class User {
-  final String name;
-  final int age;
-  final List<String> prefesion;
+  String name;
+  int age;
+  List<String> prefesion;
 
   User({
     required this.name,
