@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:states_app/models/user.dart';
 
 import '/services/services.dart';
 
@@ -8,14 +9,20 @@ class Page1Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userService = Provider.of<UserService>(context);
+    final userService = Provider.of<UserService>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Pagina - 1'),
+        actions: [
+          IconButton(
+            onPressed: userService.userRemove,
+            icon: const Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       body: userService.currentUser
-          ? const UserInfo()
+          ? UserInfo(user: userService.user!)
           : const Center(
               child: Text('No hay información del usuario'),
             ),
@@ -28,8 +35,11 @@ class Page1Page extends StatelessWidget {
 }
 
 class UserInfo extends StatelessWidget {
+  final User user;
+
   const UserInfo({
     super.key,
+    required this.user,
   });
 
   @override
@@ -38,39 +48,35 @@ class UserInfo extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       padding: const EdgeInsets.all(20.0),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'General',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Nombre: '),
+            title: Text('Nombre: ${user.name}'),
           ),
           ListTile(
-            title: Text('Edad: '),
+            title: Text('Edad: ${user.age}'),
           ),
-          Text(
+          const Text(
             'Profesiones',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Divider(),
-          ListTile(
-            title: Text('Profesion 1'),
-          ),
-          ListTile(
-            title: Text('Profesion 2'),
-          ),
-          ListTile(
-            title: Text('Profesion 3'),
+          const Divider(),
+          ...user.profesion.map(
+            (p) => ListTile(
+              title: Text(p),
+            ),
           ),
         ],
       ),
