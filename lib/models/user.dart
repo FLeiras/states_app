@@ -1,11 +1,11 @@
 class User {
-  final String name;
-  final int age;
-  final List<String> profesion;
+  String? name;
+  int? age;
+  List<String> profesion;
 
   User({
-    required this.name,
-    required this.age,
-    required this.profesion,
+    this.name,
+    this.age,
+    this.profesion = const [],
   });
 }
