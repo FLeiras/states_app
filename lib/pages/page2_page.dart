@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:states_app/bloc/user/user_cubit.dart';
+import 'package:states_app/models/user.dart';
 
 class Page2Page extends StatelessWidget {
   const Page2Page({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userCubit = context.read<UserCubit>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -15,7 +19,15 @@ class Page2Page extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                final newUser = User(
+                  name: 'Federico',
+                  age: 40,
+                  profesion: ['FullStack Developer', 'Gamer'],
+                );
+
+                userCubit.userSelect(newUser);
+              },
               color: Colors.blue,
               child: const Text(
                 'Establecer usuario',
