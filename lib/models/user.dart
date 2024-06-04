@@ -8,4 +8,15 @@ class User {
     required this.age,
     required this.profesion,
   });
+
+  User copyWith({
+    String? name,
+    int? age,
+    List<String>? profesion,
+  }) =>
+      User(
+        name: name ?? this.name,
+        age: age ?? this.age,
+        profesion: profesion ?? this.profesion,
+      );
 }

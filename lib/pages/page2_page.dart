@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:states_app/bloc/user/user_cubit.dart';
+
 import 'package:states_app/models/user.dart';
+import 'package:states_app/bloc/user/user_cubit.dart';
 
 class Page2Page extends StatelessWidget {
   const Page2Page({super.key});
@@ -35,7 +36,9 @@ class Page2Page extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                userCubit.changeAge(35);
+              },
               color: Colors.blue,
               child: const Text(
                 'Cambiar edad',
@@ -43,7 +46,9 @@ class Page2Page extends StatelessWidget {
               ),
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                userCubit.addProfesion();
+              },
               color: Colors.blue,
               child: const Text(
                 'Añadir profesion',
