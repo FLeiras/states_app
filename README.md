@@ -1,6 +1,6 @@
 # states_app
 
-El principal objetivo de este proyecto es el manejo de diferentes maneras de utilizar estados dentro de una app de Fluter.
+El principal objetivo de este proyecto es el manejo de diferentes maneras de utilizar estados dentro de una app de Flutter.
 Desde **Singleton** hasta **GetX**.
 
 ### Explicación
